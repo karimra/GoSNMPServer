@@ -1,10 +1,13 @@
 package GoSNMPServer
 
-import "strings"
-import "fmt"
-import "sort"
-import "github.com/slayercat/gosnmp"
-import "github.com/pkg/errors"
+import (
+	"fmt"
+	"sort"
+	"strings"
+
+	"github.com/pkg/errors"
+	"github.com/slayercat/gosnmp"
+)
 
 type SubAgent struct {
 	// ContextName selects from SNMPV3 ContextName or SNMPV1/V2c community for switch from SubAgent...
@@ -24,7 +27,7 @@ type SubAgent struct {
 }
 
 func (t *SubAgent) SyncConfig() error {
-	sort.Sort(byOID(t.OIDs))
+	// sort.Sort(byOID(t.OIDs))
 	t.Logger.Infof("Total OIDs of %v: %v", t.CommunityIDs, len(t.OIDs))
 	for id, each := range t.OIDs {
 		t.Logger.Infof("OIDs of %v: %v", t.CommunityIDs, each.OID)
